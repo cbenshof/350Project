@@ -3,8 +3,8 @@ import MySQLdb
 
 
 DATABASE='compSciConferenceDB'
-DB_USER = 'blogUser'
-DB_PASSWORD = 'blogPassword'
+DB_USER = 'conferenceUser'
+DB_PASSWORD = 'conferencePassword'
 HOST = 'localhost'
 
 def db_connect():

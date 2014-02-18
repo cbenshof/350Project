@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS compSciConferenceDB;
-GRANT ALL PRIVILEGES ON compSciConferenceDB.* to 'blogUser'@'localhost' 
-identified by 'blogPassword';
+GRANT ALL PRIVILEGES ON compSciConferenceDB.* to 'conferenceUser'@'localhost' 
+identified by 'conferencePassword';
 USE compSciConferenceDB;
 
 CREATE TABLE conferences
