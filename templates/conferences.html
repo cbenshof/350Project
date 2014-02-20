@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Conferences</h1>
+
+<b>Name</b>
+{% for conf in conferences %}
+  <p>{{conf[1]}}</p>
+{% endfor %}
+
+{% endblock %}

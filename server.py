@@ -1,49 +1,41 @@
 from flask import Flask, render_template, request
 import MySQLdb
-import utils
 
 app = Flask(__name__)
 
 # Configuration
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def mainIndex():
-    db = utils.db_connect()
-    cur = db.cursor()
-    
-    # if user typed in a post ...
-    if request.method == 'POST':
-        query = "INSERT INTO posts VALUES ('" + request.form['name'] + "', '" + request.form['msg'] + "')"
-        # Print query to console (useful for debugging)
-        print query
-        cur.execute(query)
-        db.commit()
+  return render_template('index.html')
 
-    cur.execute('select * from posts')
-    rows = cur.fetchall()
+@app.route('/conferences', methods=['GET'])
+def confTable():
+  db = connectDB()
+  cur = db.cursor()
 
-    return render_template('index.html', posts=rows)
+  cur.execute('select * from conferences;')
+  rows = cur.fetchall()
 
-@app.route('/cursor', methods=['GET', 'POST'])
-def cursorDictDemo():
-    db = utils.db_connect()
-    cur = db.cursor(cursorclass=MySQLdb.cursors.DictCursor)
-    
-    # if user typed in a post ...
-    if request.method == 'POST':
-        query = "INSERT INTO posts VALUES ('" + request.form['name'] + "', '" + request.form['msg'] + "')"
-        # Print query to console (useful for debugging)
-        print query
-        cur.execute(query)
-        db.commit()
+  return render_template('conferences.html', conferences=rows)
 
-    cur.execute('select * from posts')
-    rows = cur.fetchall()
-
-    return render_template('index2.html', posts=rows)
-
-
+# Connects to the database. If the database doesn't exist, it is created. If the conferences table
+# does not exist, it is also created. Returns the db object.
+def connectDB():
+  db = MySQLdb.connect(host = 'localhost', user = 'root', passwd = 'password')
+  cur = db.cursor()
+  sql = 'CREATE DATABASE IF NOT EXISTS compSciConferenceDB;'
+  print sql
+  cur.execute(sql)
+  sql = 'USE compSciConferenceDB;'
+  print sql
+  cur.execute(sql)
+  sql = 'CREATE TABLE IF NOT EXISTS conferences (conference_id INT NOT NULL AUTO_INCREMENT, conference_name VARCHAR(175) NOT NULL, acronym VARCHAR(20) default NULL, district VARCHAR(25) default NULL, country VARCHAR(25) default NULL, venue VARCHAR(200) default NULL, start_date DATE NOT NULL, end_date DATE NOT NULL, PRIMARY KEY(conference_id));'
+  print sql
+  cur.execute(sql)
+  db.commit()
+  return db
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run(host='0.0.0.0', port=3000)
+  app.debug = True
+  app.run(host='0.0.0.0', port=3000)
