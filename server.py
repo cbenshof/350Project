@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from datetime import datetime
 import MySQLdb
 
 app = Flask(__name__)
@@ -8,6 +9,46 @@ app = Flask(__name__)
 @app.route('/')
 def mainIndex():
   return render_template('index.html')
+
+# Post an event Form page - Logan & Candice
+
+@app.route('/postEvent')
+def eventPost():
+	return render_template('postEvent.html')
+
+# Display added event and add to the database - Logan & Candice
+
+@app.route('/postEvent2', methods=['POST'])
+def postEvent2():
+	db = MySQLdb.connect(host = 'localhost', user='root', passwd = 'password', compSciConferenceDB)
+	cur = db.cursor()
+	
+	event = {
+		'conference_name': request.form['conference_name'],
+		'acronym': request.form['acronym'],
+		'district': request.form['district'],
+		'country': request.form['country'],
+		'venue': request.form['venue'],
+		'month': request.form['month'],
+		'month2': request.form['month2'],
+		'day': request.form['day'],
+		'day2': request.form['day2'],
+		'year': request.form['year'],
+		'year2': request.form['year2']
+	}
+	theDate = request.form['year'] + "-" + request.form['month'] + "-" + request.form['day']
+	startDate = datetime.strptime(theDate, '%Y-%m-%d')
+
+	theDate2 = request.form['year2'] + "-" + request.form['month2'] + "-" + request.form['day2']
+	endDate = datetime.strptime(theDate2, '%Y-%m-%d')
+
+	# enter the query
+	query = "INSERT INTO conferences VALUES ('" + request.form['conference_name' + "', '" + request.form['acronym'] + "', '" + request.form['district'] + "', '" + request.form['country'] + "', '" + request.form['venue'] + "', '" + startDate + "', '" + endDate + "');"
+	print query
+	cur.execute(query)
+	db.commit()
+
+	return render_template('postEvent2.html', events=events)
 
 @app.route('/conferences', methods=['GET'])
 def confTable():
