@@ -23,7 +23,7 @@ def postEvent2():
 	db = MySQLdb.connect(host = 'localhost', user='root', passwd = 'password', compSciConferenceDB)
 	cur = db.cursor()
 	
-	event = {
+	events = {
 		'conference_name': request.form['conference_name'],
 		'acronym': request.form['acronym'],
 		'district': request.form['district'],
