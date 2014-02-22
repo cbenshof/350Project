@@ -43,7 +43,7 @@ def postEvent2():
 	endDate = datetime.strptime(theDate2, '%Y-%m-%d')
 
 	# enter the query
-	query = "INSERT INTO conferences VALUES ('" + request.form['conference_name'] + "', '" + request.form['acronym'] + "', '" + request.form['district'] + "', '" + request.form['country'] + "', '" + request.form['venue'] + "', '" + startDate + "', '" + endDate + "');"
+	query = "INSERT INTO conferences VALUES (NULL, '" + request.form['conference_name'] + "', '" + request.form['acronym'] + "', '" + request.form['district'] + "', '" + request.form['country'] + "', '" + request.form['venue'] + "', '" + theDate + "', '" + theDate2 + "');"
 	print query
 	cur.execute(query)
 	db.commit()
