@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Thanks for Adding {{events.conference_name}} to Events</h1>
+
+Event Details:
+<br><br>
+Conference Name: {{events.conference_name}}
+<br>
+Acronym: {{events.acronym}}
+<br>
+District: {{events.district}}
+<br>
+Country: {{events.country}}
+<br>
+Venue: {{events.venue}}
+<br>
+Start Date: {{events.month}}.{{events.day}}.{{events.year}}
+<br>
+End Date: {{events.month2}}.{{events.day2}}.{{events.year2}}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Create an Event</h1>
+<form method = "post" action = "/postEvent2">
+<table>
+	<tr><td>Conference Name</td><td><input type="text" id="conference_name" name="conference_name" /></td></tr>
+
+	<tr><td>Acronym</td><td><input type="text" id="acronym" name="acronym" /></td></tr>
+
+	<tr><td>District</td><td><input type="text" id="district" name="district" /></td></tr>
+
+	<tr><td>Country</td><td><input type="text" id="country" name="country" /></td></tr>
+
+	<tr><td>Venue</td><td><input type="text" id="venue" name="venue" /></td></tr>
+
+	<tr><td>Start Date</td><td><input type="number" name="month" min="1" max="12" step="1" value="1" size="3"/>
+	<input type="number" name="day" min="1" max="31" step="1" value="1" size="3"/>
+	<input type="number" name="year" min="2014" max="2020" step="1" value="2014" size="4"/></td></tr>
+
+	<tr><td>End Date</td><td><input type="number" name="month2" min="1" max="12" step="1" value="1" size="3"/>
+	<input type="number" name="day2" min="1" max="31" step="1" value="1" size="3"/>
+	<input type="number" name="year2" min="2014" max="2020" step="1" value="2014" size="4"/></td></tr>
+
+	<tr><td>&nbsp;</td><td><input type="submit" value="Submit" /></td></tr>
+
+</table>
+</form>
+
+{% endblock %}
