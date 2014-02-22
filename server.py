@@ -20,7 +20,7 @@ def eventPost():
 
 @app.route('/postEvent2', methods=['POST'])
 def postEvent2():
-	db = MySQLdb.connect(host = 'localhost', user='root', passwd = 'password', compSciConferenceDB)
+	db = connectDB()
 	cur = db.cursor()
 	
 	events = {
@@ -43,7 +43,7 @@ def postEvent2():
 	endDate = datetime.strptime(theDate2, '%Y-%m-%d')
 
 	# enter the query
-	query = "INSERT INTO conferences VALUES ('" + request.form['conference_name' + "', '" + request.form['acronym'] + "', '" + request.form['district'] + "', '" + request.form['country'] + "', '" + request.form['venue'] + "', '" + startDate + "', '" + endDate + "');"
+	query = "INSERT INTO conferences VALUES ('" + request.form['conference_name'] + "', '" + request.form['acronym'] + "', '" + request.form['district'] + "', '" + request.form['country'] + "', '" + request.form['venue'] + "', '" + startDate + "', '" + endDate + "');"
 	print query
 	cur.execute(query)
 	db.commit()
