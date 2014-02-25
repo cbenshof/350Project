@@ -3,9 +3,17 @@
 {% block content %}
 <h1>Conferences</h1>
 
-<b>Name</b>
+<table>
+<th><strong>Name<strong></tr>
 {% for conf in conferences %}
-  <p>{{conf[1]}}</p>
+  <tr>{{conf[1]}}<tr>
+  <td>{{conf[2]}}</td>
+  <td>{{conf[3]}}</td>
+  <td>{{conf[4]}}</td>
+  <td>{{conf[5]}}</td>
+  <td>{{conf[6]}}</td>
+  <td>{{conf[7]}}</td>
+  <td>{{conf[8]}}</td>
 {% endfor %}
 
 {% endblock %}
