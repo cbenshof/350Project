@@ -1,19 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Conferences</h1>
-
 <table>
+<th>Conferences</th>
 {% for conf in conferences %}
-  <th>{{conf[1]}}</th>
+  <tr>{{conf[1]}}</tr>
   <td>{{conf[2]}}</td>
   <td>{{conf[3]}}</td>
   <td>{{conf[4]}}</td>
   <td>{{conf[5]}}</td>
   <td>{{conf[6]}}</td>
   <td>{{conf[7]}}</td>
-  <td>{{conf[8]}}</td>
-</table>
+ </table>
 {% endfor %}
 
 {% endblock %}
