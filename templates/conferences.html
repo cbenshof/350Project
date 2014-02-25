@@ -4,9 +4,8 @@
 <h1>Conferences</h1>
 
 <table>
-<th><strong>Name<strong></tr>
 {% for conf in conferences %}
-  <tr>{{conf[1]}}<tr>
+  <th>{{conf[1]}}</th>
   <td>{{conf[2]}}</td>
   <td>{{conf[3]}}</td>
   <td>{{conf[4]}}</td>
@@ -14,6 +13,7 @@
   <td>{{conf[6]}}</td>
   <td>{{conf[7]}}</td>
   <td>{{conf[8]}}</td>
+</table>
 {% endfor %}
 
 {% endblock %}
