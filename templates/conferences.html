@@ -3,15 +3,25 @@
 {% block content %}
 <table>
 <th>Conferences</th>
+  <tr>
+  <td>Conference Name</td>
+  <td>Acronym</td>
+  <td>District</td>
+  <td>Country</td>
+  <td>Venue</td>
+  <td>Start Date</td>
+  <td>End Date</td>
+  </tr>
 {% for conf in conferences %}
-  <tr>{{conf[1]}}</tr>
+  <tr>
+  <td>{{conf[1]}}</td>
   <td>{{conf[2]}}</td>
   <td>{{conf[3]}}</td>
   <td>{{conf[4]}}</td>
   <td>{{conf[5]}}</td>
   <td>{{conf[6]}}</td>
   <td>{{conf[7]}}</td>
- </table>
+  </tr>
 {% endfor %}
-
+</table>
 {% endblock %}
