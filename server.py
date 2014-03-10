@@ -43,20 +43,26 @@ def postEvent2():
 	endDate = datetime.strptime(theDate2, '%Y-%m-%d')
 
 	# enter the query
-	query = "INSERT INTO conferences VALUES (NULL, '" + request.form['conference_name'] + "', '" + request.form['acronym'] + "', '" + request.form['district'] + "', '" + request.form['country'] + "', '" + request.form['venue'] + "', '" + theDate + "', '" + theDate2 + "');"
+	query = "INSERT INTO conferences VALUES (NULL, '" + MySQLdb.escape_string(request.form['conference_name']) + "', '" + MySQLdb.escape_string(request.form['acronym']) + "', '" + MySQLdb.escape_string(request.form['district']) + "', '" + MySQLdb.escape_string(request.form['country']) + "', '" + MySQLdb.escape_string(request.form['venue']) + "', '" + theDate + "', '" + theDate2 + "');"
 	print query
 	cur.execute(query)
 	db.commit()
 
 	return render_template('postEvent2.html', events=events)
 
-@app.route('/conferences', methods=['GET'])
+@app.route('/conferences', methods=['GET', 'POST'])
 def confTable():
   db = connectDB()
   cur = db.cursor()
 
-  cur.execute('select * from conferences;')
-  rows = cur.fetchall()
+  if request.method == 'GET':
+    cur.execute('select * from conferences;')
+    rows = cur.fetchall()
+  if request.method == 'POST':
+    query = "select * from conferences WHERE conference_name LIKE '%" + MySQLdb.escape_string(request.form['search_field']) + "%' OR acronym LIKE '%" + MySQLdb.escape_string(request.form['search_field']) + "%' OR district LIKE '%" + MySQLdb.escape_string(request.form['search_field']) + "%' OR country LIKE '%" + MySQLdb.escape_string(request.form['search_field']) + "%' OR venue LIKE '%" + MySQLdb.escape_string(request.form['search_field']) + "%';"
+    print query
+    cur.execute(query)
+    rows = cur.fetchall()
 
   return render_template('conferences.html', conferences=rows)
 
