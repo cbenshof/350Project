@@ -15,7 +15,7 @@
       <div id="logo">
         <!-- class="logo_colour", allows you to change the colour of the text -->
         <h1><a href="/"><span class="logo_colour">CPSC Conference Finder</span></a></h1>
-        <h2>Fill this blank, I'm not creative</h2>
+        <h2>{% if user != "" %} Hi, {{user}} {% endif %}</h2>
       </div>
       <div id="menubar">
         <ul id="menu">
@@ -23,8 +23,8 @@
           <li class="selected"><a href="/">Home</a></li>
           <li><a href="/conferences">Conference List</a></li>
           <li><a href="/postEvent">Add Event</a></li>
-          <li><a href="another_page.html">Another Page</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
+          <li>{% if user != "" %} <a href="/logout">Log Out</a>{% else %}<a href="/login">Log In</a>{% endif %}</li>
+          <li><a href="/register">Register</a></li>
         </ul>
       </div>
     </div>

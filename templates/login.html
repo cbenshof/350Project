@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Login</h1>
+{{errorMessage}} <!--Make me Red-->
+<form method = "POST" action = "/login">
+<table>
+	<tr><td>Username:</td><td><input type="text" id="username" name="username" /></td></tr>
+
+	<tr><td>Password:</td><td><input type="password" id="password" name="password" /></td></tr>
+
+	<tr><td>&nbsp;</td><td><input type="submit" value="Login" /></td></tr>
+
+</table>
+</form>
+
+{% endblock %}
