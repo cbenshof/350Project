@@ -4,7 +4,7 @@
 <h1>Create an Event</h1>
 <form method = "post" action = "/postEvent2">
 <table>
-	<tr><td>Conference Name</td><td><input type="text" id="conference_name" name="conference_name" /></td></tr>
+	<tr><td>Conference Name</td><td><input type="text" id="conference_name" name="conference_name" {%if event != None %} value="{{event.conference_name}}" {% endif %}/></td></tr>
 
 	<tr><td>Acronym</td><td><input type="text" id="acronym" name="acronym" /></td></tr>
 

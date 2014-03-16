@@ -18,12 +18,25 @@ def mainIndex():
 
 # Post an event Form page - Logan & Candice
 
-@app.route('/postEvent')
+@app.route('/postEvent', methods=['POST'])
 def eventPost():
+  event = None
+  if request.method == 'POST':
+    event = {
+      'conference_name': request.form['a'],
+      'acronym': request.form['b'],
+      'district': request.form['c'],
+      'country': request.form['d'],
+      'venue': request.form['e'],
+      'date1': request.form['f'],
+      'date2': request.form['g']
+    }
   if 'username' in session:
-    return render_template('postEvent.html', user = session['username'])
+    user = session['username']
   else:
-    return render_template('postEvent.html', user = "")
+    user = ""
+
+  return render_template('postEvent.html', user = user, event = event)
 
 # Display added event and add to the database - Logan & Candice
 
@@ -71,7 +84,7 @@ def editEntry():
 
 	}
 	
-	return render_template('postEvent2.html', events = events, user ="")
+	return render_template('postEvent.html', events = events, user ="")
 
 
 @app.route('/conferences', methods=['GET', 'POST'])

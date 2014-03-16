@@ -15,14 +15,15 @@
   </tr>
 {% for conf in conferences %}
   <tr>
-  <td><form method="post" action="/edit"><input type="submit" value="Edit" name="edit" /></td>
-  <td>{{conf[1]}}</td>
-  <td>{{conf[2]}}</td>
-  <td>{{conf[3]}}</td>
-  <td>{{conf[4]}}</td>
-  <td>{{conf[5]}}</td>
-  <td>{{conf[6]}}</td>
-  <td>{{conf[7]}}</td>
+  <td><form method="post" action="/postEvent"><input type="submit" value="Edit" name="edit" /></td>
+  <td><input type="text" name="a" disabled value="{{conf[1]}}"/></td>
+  <td><input type="text" name="b" disabled value="{{conf[2]}}"/></td>
+  <td><input type="text" name="c" disabled value="{{conf[3]}}"/></td>
+  <td><input type="text" name="d" disabled value="{{conf[4]}}"/></td>
+  <td><input type="text" name="e" disabled value="{{conf[5]}}"/></td>
+  <td><input type="text" name="f" disabled value="{{conf[6]}}"/></td>
+  <td><input type="text" name="g" disabled value="{{conf[7]}}"/></td>
+  </form>
   </tr>
 {% endfor %}
 </table>
