@@ -61,6 +61,19 @@ def postEvent2():
   else:
     return render_template('postEvent2.html', events = events, user = "")
 
+# edit a conference 
+@app.route('/edit', methods=['GET', 'POST'])
+def editEntry():
+	db = connectDB()
+	cur = db.cursor()
+	events = {
+		
+
+	}
+	
+	return render_template('postEvent2.html', events = events, user ="")
+
+
 @app.route('/conferences', methods=['GET', 'POST'])
 def confTable():
   db = connectDB()
