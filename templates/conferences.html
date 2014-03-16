@@ -4,6 +4,7 @@
 <table>
 <th>Conferences</th>
   <tr>
+  <td></td>
   <td>Conference Name</td>
   <td>Acronym</td>
   <td>District</td>
@@ -14,6 +15,7 @@
   </tr>
 {% for conf in conferences %}
   <tr>
+  <td><form method="post" action="/edit"><input type="submit" value="Edit" name="edit" /></td>
   <td>{{conf[1]}}</td>
   <td>{{conf[2]}}</td>
   <td>{{conf[3]}}</td>
