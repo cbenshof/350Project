@@ -15,7 +15,7 @@
   </tr>
 {% for conf in conferences %}
   <tr>
-  <td><form method="post" action="/postEvent"><input type="submit" value="Edit" name="edit" /></td>
+  <td><form method="POST" action="/editEvent"><input type="submit" value="Edit" name="edit" /></td>
   <td><input type="text" name="a" disabled value="{{conf[1]}}"/></td>
   <td><input type="text" name="b" disabled value="{{conf[2]}}"/></td>
   <td><input type="text" name="c" disabled value="{{conf[3]}}"/></td>

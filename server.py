@@ -18,25 +18,29 @@ def mainIndex():
 
 # Post an event Form page - Logan & Candice
 
-@app.route('/postEvent', methods=['POST'])
+@app.route('/postEvent')
 def eventPost():
-  event = None
-  if request.method == 'POST':
-    event = {
-      'conference_name': request.form['a'],
-      'acronym': request.form['b'],
-      'district': request.form['c'],
-      'country': request.form['d'],
-      'venue': request.form['e'],
-      'date1': request.form['f'],
-      'date2': request.form['g']
-    }
   if 'username' in session:
-    user = session['username']
+    curUser = session['username']
   else:
-    user = ""
+    curUser = ""
 
-  return render_template('postEvent.html', user = user, event = event)
+  return render_template('postEvent.html', user = curUser, event = None)
+
+@app.route('/editEvent', methods=['POST'])
+def editEvent():
+  editEvent = {
+    'conference_name': esc('a'),
+    'acronym': esc('b'),
+    'district': esc('c'),
+    'country': esc('d'),
+    'venue': esc('e'),
+    'date1': esc('f'),
+    'date2': esc('g')
+  }
+  if 'username' in session:
+    return render_template('postEvent.html', user = session['username'], event = editEvent)
+  return render_template('postEvent.html', user = "", event = editEvent)
 
 # Display added event and add to the database - Logan & Candice
 
@@ -73,18 +77,6 @@ def postEvent2():
     return render_template('postEvent2.html', events = events, user = session['username'])
   else:
     return render_template('postEvent2.html', events = events, user = "")
-
-# edit a conference 
-@app.route('/edit', methods=['GET', 'POST'])
-def editEntry():
-	db = connectDB()
-	cur = db.cursor()
-	events = {
-		
-
-	}
-	
-	return render_template('postEvent.html', events = events, user ="")
 
 
 @app.route('/conferences', methods=['GET', 'POST'])
